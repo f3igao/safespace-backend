@@ -11,7 +11,10 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(comment_params)
+    user = User.find_by(username:params['comment']['username'])
+    content = params['comment']['content']
+    story_id = params[:story_id]
+    @comment = Comment.new(user_id:user.id, story_id:story_id, content:content)
     if @comment.save
       render json: @comment
     else
