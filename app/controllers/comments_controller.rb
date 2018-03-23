@@ -1,11 +1,12 @@
 class CommentsController < ApplicationController
   def index
-    @comments = Comment.all
+    @comments = Story.find(params[:story_id]).comments
     render json: @comments
   end
 
   def show
-    @comment = Comment.find(params[:id])
+    comments = Story.find(params[:story_id]).comments
+    @comment = comments.find(params[:id])
     render json: @comment
   end
 
