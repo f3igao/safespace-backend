@@ -11,7 +11,6 @@ class StoriesController < ApplicationController
   end
 
   def create
-    byebug
     @story = Story.new(story_params)
 
     if @story.save

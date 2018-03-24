@@ -6,5 +6,19 @@ class Story < ApplicationRecord
 
   accepts_nested_attributes_for :stories_tags
 
+  def autosave_associated_records_for_stories_tags
+    byebug
+    stories_tags.each do |st|
+      if new_tag = Tag.find_by(name:st.tag.name)
+        st.tag = new_tag
+      else
+        st.tag.save!
+      end
+      st.story = self
+      st.save!
+    end
+    byebug
+  end
+
 
 end
