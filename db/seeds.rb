@@ -33,3 +33,14 @@ Story.all.each do |story|
     Comment.create(content:content, user_id:user.id, story_id:story.id)
   end
 end
+
+Tag.delete_all
+Tag.reset_pk_sequence
+Story.all.each do |story|
+  3.times do
+    name = Faker::Color.color_name
+    tag = Tag.new(name:name)
+    tag.stories << story
+    tag.save
+  end
+end

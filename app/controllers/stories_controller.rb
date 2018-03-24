@@ -11,7 +11,9 @@ class StoriesController < ApplicationController
   end
 
   def create
+    byebug
     @story = Story.new(story_params)
+
     if @story.save
       render json: @story
     else
@@ -27,7 +29,7 @@ class StoriesController < ApplicationController
 
   private
   def story_params
-    params.require(:story).permit(:content, :user_id, :tags_attributes => [:name])
+    params.require(:story).permit(:content, :user_id, :stories_tags_attributes => [:tag_attributes => [:name]])
   end
 
 end
