@@ -1,4 +1,5 @@
 class StoriesController < ApplicationController
+  skip_before_action :authorized, only: [:index]
 
   def index
     @stories = Story.all
