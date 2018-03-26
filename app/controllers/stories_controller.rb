@@ -28,7 +28,7 @@ class StoriesController < ApplicationController
 
   private
   def story_params
-    params.require(:story).permit(:content, :user_id, :stories_tags_attributes => [:tag_attributes => [:name]])
+    params.require(:story).permit(:content, :user_id, :location, :stories_tags_attributes => [:tag_attributes => [:name]])
   end
 
 end
