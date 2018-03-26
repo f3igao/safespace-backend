@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authorized, only: [:create]
   def index
 
     if params[:name]
@@ -16,11 +17,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(username: params[:username], password: params[:password])
     if @user.save
-      render json: @user
+      # SUCCESSFUL CREATION
+      payload = { user_id: @user.id}
+      render json: {user: UserSerializer.new(@user), token: issue_token(payload)}
     else
-      render json: {errors: @user.errors.full_messages}, status: 422
+      render json: {message: "Sucks to suck"}
     end
   end
 

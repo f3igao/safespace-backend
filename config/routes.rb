@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   end
   resources :users, except: [:new, :edit]
   resources :tags, only: [:index, :show]
+  resources :auth, only: [:create]
 end
