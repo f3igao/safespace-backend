@@ -4,7 +4,5 @@ class StoriesTag < ApplicationRecord
 
   accepts_nested_attributes_for :tag
 
-  def autosave_associated_records_for_tag
-    
-  end
+  
 end
