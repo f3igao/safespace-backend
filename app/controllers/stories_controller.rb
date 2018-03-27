@@ -2,7 +2,11 @@ class StoriesController < ApplicationController
   skip_before_action :authorized, only: [:index]
 
   def index
-    @stories = Story.all
+    if params[:user_id]
+      @stories = Story.all.select { |story| story.user_id == params[:user_id].to_i }
+    else
+      @stories = Story.all
+    end
     render json: @stories
   end
 
