@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       render json: @user
     else
       @users = User.all
-      render json: @users
+      render json: current_user
     end
   end
 

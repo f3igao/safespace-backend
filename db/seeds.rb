@@ -19,7 +19,7 @@ Story.delete_all
 Story.reset_pk_sequence
 2.times do
   User.all.each do |user|
-    content = Faker::HarryPotter.quote
+    content = Faker::Lorem.paragraph(4, true, 6)
     location = Faker::Address.latitude + ',' + Faker::Address.longitude
     Story.create(content:content, location:location, user_id:user.id)
   end

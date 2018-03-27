@@ -35,6 +35,6 @@ class ApplicationController < ActionController::API
   end
 
   def authorized
-    render json: {message: 'Error' } unless logged_in?
+    render json: {message: 'Not logged in' } unless logged_in?
   end
 end
