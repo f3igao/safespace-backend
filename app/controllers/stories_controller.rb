@@ -26,6 +26,13 @@ class StoriesController < ApplicationController
   end
 
   def update
+    @story = Story.find(params[:id])
+    @story.update(story_params)
+    if @story.save
+      render json: @story
+    else
+      render json: {errors: @story.errors.full_messages}, status: 422
+    end
   end
 
   def delete
