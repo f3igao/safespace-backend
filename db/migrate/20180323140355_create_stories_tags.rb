@@ -1,6 +1,6 @@
 class CreateStoriesTags < ActiveRecord::Migration[5.1]
   def change
-    create_table :stories_tags, id:false do |t|
+    create_table :stories_tags do |t|
       t.integer :story_id
       t.integer :tag_id
     end
