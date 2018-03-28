@@ -25,7 +25,6 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     @comment.update(comment_params)
-    byebug
     if @comment.save
       render json: @comment
     else
