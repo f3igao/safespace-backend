@@ -7,7 +7,7 @@ class AuthController < ApplicationController
       payload = { user_id: @user.id}
       render json: {user: UserSerializer.new(@user), token: issue_token(payload) }
     else
-      render json: {message: "SUCKS"}
+      render json: {error:'no'}
     end
   end
 end

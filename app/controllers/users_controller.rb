@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       payload = { user_id: @user.id}
       render json: {user: UserSerializer.new(@user), token: issue_token(payload)}
     else
-      render json: {message: "Sucks to suck"}
+      render json: {errors: @user.errors.full_messages}, status: 422
     end
   end
 
