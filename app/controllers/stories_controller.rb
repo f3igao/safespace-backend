@@ -27,6 +27,7 @@ class StoriesController < ApplicationController
 
   def update
     @story = Story.find(params[:id])
+    byebug
     @story.update(story_params)
     if @story.save
       render json: @story
