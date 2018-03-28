@@ -8,6 +8,19 @@
 
 User.delete_all
 User.reset_pk_sequence
+
+Story.delete_all
+Story.reset_pk_sequence
+
+Comment.delete_all
+Comment.reset_pk_sequence
+
+Tag.delete_all
+Tag.reset_pk_sequence
+
+StoriesTag.delete_all
+StoriesTag.reset_pk_sequence
+
 10.times do
   name = Faker::Name.first_name
   password = Faker::HarryPotter.house
@@ -15,8 +28,6 @@ User.reset_pk_sequence
 end
 
 
-Story.delete_all
-Story.reset_pk_sequence
 2.times do
   User.all.each do |user|
     content = Faker::Lorem.paragraph(4, true, 6)
@@ -26,8 +37,7 @@ Story.reset_pk_sequence
 end
 
 
-Comment.delete_all
-Comment.reset_pk_sequence
+
 Story.all.each do |story|
   2.times do
     content = Faker::Cat.breed
@@ -36,13 +46,16 @@ Story.all.each do |story|
   end
 end
 
-Tag.delete_all
-Tag.reset_pk_sequence
+10.times do
+  name = Faker::Book.unique.genre
+  tag = Tag.create(name:name)
+end
+
+
+
 Story.all.each do |story|
-  3.times do
-    name = Faker::Color.color_name
-    tag = Tag.new(name:name)
-    tag.stories << story
-    tag.save
+  2.times do
+    tag = Tag.all.sample
+    StoriesTag.create(story_id:story.id, tag_id:tag.id)
   end
 end
